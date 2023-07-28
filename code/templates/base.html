@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% block head %}
+    <title>{% block title %}{% endblock %}</title>
+    {% endblock %}
+</head>
+
+<body>
+    <div>
+        <div id="headline">
+            您好, {% if session.name %} {% block header %}{{ session.name }}{% endblock %} ,欢迎使用中传放心传  Edition {% else %} 欢迎使用中传放心传  Edition {% endif %}
+        </div>
+        <div style="padding-top: 36px;">
+            {% if session.name %}
+            <button type="submit" onclick="window.location.href='logout'">退出登录</button> {% endif %} {% block body %} {% endblock %}
+        </div>
+    </div>
+
+</html>
+
+<link rel="stylesheet" href="/static/css/base.css">

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中传放心传</title>
+    <link rel="stylesheet" href="/static/css/login.css">
+</head>
+
+<body>
+    <div class="container" id="content">
+        <div class="form-box">
+            <!-- 注册 -->
+            <div class="register-box hidden">
+                <h1>register</h1>
+                <form method="post" action="{{url_for('testpage_register')}}" class="register-box" name="registerForm">
+                    <input type="text" placeholder="用户名" value="{{request.form['username']}}" name="username" id="r_username" title="用户名包括中英文和数字，不得含有特殊字符">
+                    <input type="email" placeholder="邮箱" value="{{request.form['email']}}" name="email" id="r_email" hidden>
+                    <input type="password" placeholder="请输入密码" value="{{request.form['password']}}" name="password" id="r_password" hidden title="密码在 6 到 36 位之间，需要强度在中等以上">
+                    <span id="password_strong" hidden>...</span>
+                    <input type="password" placeholder="确认密码" value="{{request.form['passwordAgain']}}" name="passwordAgain" id="r_password_again" onchange="changePassword();" hidden title="请重复你输入的密码">
+                    <input value="{{request.form['get_csrf']}}" name="get_csrf" id="r_csrf" hidden>
+                    <button type="button" hidden id="r_submit" onclick="SetRegister();">注册</button>
+                </form>
+            </div>
+            <!-- 登录 -->
+            <div class="login-box ">
+                <h1>login</h1>
+                <form method="post" action="{{url_for('testpage_login')}}" class="login-box" name="loginForm">
+                    <input type="text" placeholder="邮箱 / 电话号码" value="{{request.form['username']}}" name="email" id="l_email">
+                    <input type="password" placeholder="密码" value="{{request.form['password']}}" name="password" id="l_password">
+                    <input value="{{request.form['get_csrf']}}" name="get_csrf" id="l_csrf" hidden>
+                    <button type="button" onclick="SetLogin();">登录</button>
+                </form>
+                <a href="{{url_for('forgot')}}">找回密码</a>
+                <!--需要添加找回密码网址-->
+                <button id="threelogin">第三方登录</button>
+            </div>
+            <!-- 第三方登录 -->
+            <div class="threelogin-box hidden">
+                <h1>login</h1>
+                <a href="链接地址" style='text-decoration:none'><img src="/static/img/wx.jpg" alt="">
+                    <p>微信登录</p>
+                </a>
+                <a href="链接地址" style='text-decoration:none'><img src="/static/img/wb.jpg" alt="">
+                    <p>微博登录</p>
+                </a>
+                <a href="链接地址" style='text-decoration:none'><img src="/static/img/zfb.jpg" alt="">
+                    <p>支付宝登录</p>
+                </a>
+                <button id="signin">已有账号登录</button>
+            </div>
+        </div>
+
+        <div class="con-box left">
+            <h2>中传放心传</h2>
+            <img src="/static/img/1.jpg" alt="">
+            <button id="login">登录</button>
+        </div>
+        <div class="con-box right">
+            <h2>中传放心传</h2>
+            <img src="/static/img/1.jpg" alt="">
+            <button id="register">注册</button>
+        </div>
+
+        {% for message in get_flashed_messages() %} {% if message%}
+        <p hidden id="flash_mes">{{ message }} </p>
+        {% endif %} {% endfor %}
+        <p hidden id="csrf_text">{{ session.csrf }}</p>
+    </div>
+    <layer id="loding" hidden>
+        <div>
+            <div class="loader">
+                <div class="loader-inner">
+                    <div class="loader-line-wrap">
+                        <div class="loader-line"></div>
+                    </div>
+                    <div class="loader-line-wrap">
+                        <div class="loader-line"></div>
+                    </div>
+                    <div class="loader-line-wrap">
+                        <div class="loader-line"></div>
+                    </div>
+                    <div class="loader-line-wrap">
+                        <div class="loader-line"></div>
+                    </div>
+                    <div class="loader-line-wrap">
+                        <div class="loader-line"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </layer>
+
+</body>
+
+<script src="/static/js/jquery-3.2.1.slim.min.js"></script>
+<script src="/static/js/login.js"></script>
+<script src="/static/js/hashpwd.js"></script>
+<script src="/static/js/zxcvbn.js"></script>
+
+</html>

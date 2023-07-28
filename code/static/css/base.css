@@ -1,0 +1,27 @@
+body {
+    margin: 0 auto;
+    height: 100vh;
+    background: rgba(192, 255, 246, 0.441);
+}
+
+#headline {
+    width: 100%;
+    height: 44px;
+    background-color: #bcb7d8;
+    position: fixed;
+    z-index: 1;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    line-height: 44px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+}
